@@ -1,12 +1,19 @@
 import org.example.Wallet;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class WalletTest {
 
+    private Wallet wallet;
+
+    @BeforeEach
+    void testSetUp() {
+        wallet = new Wallet("Anis");
+    }
+
     @Test
-    void setOwner() {
-        Wallet wallet = new Wallet("Anis");
+    void testSetOwner() {
         assertEquals("Anis", wallet.owner);
 
         wallet.setOwner("Annisa");
@@ -14,15 +21,13 @@ class WalletTest {
     }
 
     @Test
-    void tambahKartu() {
-        Wallet wallet = new Wallet("Anis");
+    void testTambahKartu() {
         wallet.tambahKartu("Kartu Kredit");
         assertTrue(wallet.listKartu.contains("Kartu Kredit"));
     }
 
     @Test
-    void ambilKartu() {
-        Wallet wallet = new Wallet("Anis");
+    void testAmbilKartu() {
         wallet.tambahKartu("Kartu Kredit");
 
         // Tes ketika kartu ada
@@ -33,9 +38,7 @@ class WalletTest {
     }
 
     @Test
-    void tambahUangRupiah() {
-        Wallet wallet = new Wallet("Anis");
-
+    void testTambahUangRupiah() {
         // Tes penambahan uang koin
         wallet.tambahUangRupiah(500);
         assertTrue(wallet.listUangKoin.contains(500));
@@ -46,9 +49,7 @@ class WalletTest {
     }
 
     @Test
-    void ambilUang() {
-        Wallet wallet = new Wallet("Anis");
-
+    void testAmbilUang() {
         // Tes pengambilan uang koin
         wallet.tambahUangRupiah(500);
         assertEquals(500, wallet.ambilUang(500));
@@ -64,9 +65,7 @@ class WalletTest {
     }
 
     @Test
-    void tampilkanUang() {
-        Wallet wallet = new Wallet("Anis");
-
+    void testTampilkanUang() {
         wallet.tambahUangRupiah(500);
         wallet.tambahUangRupiah(1500);
 
